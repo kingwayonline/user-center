@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lgak.mapper.user.UserMapper">
+  <resultMap id="BaseResultMap" type="com.lgak.bean.user.User">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="USER_NAME" jdbcType="VARCHAR" property="userName" />
+    <result column="MAIL" jdbcType="VARCHAR" property="mail" />
+    <result column="ADDRESS" jdbcType="VARCHAR" property="address" />
+    <result column="PHONE" jdbcType="INTEGER" property="phone" />
+    <result column="DATE" jdbcType="TIMESTAMP" property="date" />
+    <result column="CITY" jdbcType="INTEGER" property="city" />
+  </resultMap>
+</mapper>
