@@ -32,11 +32,13 @@ public class TestController {
 
     @GetMapping("/test1")
 //    @Transactional
-    public String test1() {
+    public String test1() throws InterruptedException {
 //        PageHelper.startPage(1,2);
         log.info("调用");
         var user2 = new User();
         user2.setId(1);
+
+//        Thread.sleep(5000);
 
         User user = User.builder().id(1).build();
         List<User> users = userMapper.selectAll();
