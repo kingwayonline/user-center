@@ -1,18 +1,16 @@
 package com.lgak.controller;
 
-import com.lgak.bean.user.User;
+import bean.SysUser;
 import com.lgak.mapper.user.UserMapper;
 import lombok.extern.slf4j.Slf4j;
-import lombok.var;
 import org.redisson.api.RBucket;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.ReactiveRedisTemplate;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import javax.servlet.http.HttpServletResponse;
 
 @Slf4j
 @RestController
@@ -22,7 +20,7 @@ public class TestController {
     private UserMapper userMapper;
 
     @Autowired
-    private RedisTemplate<String,String> redisTemplate;
+    private RedisTemplate<String, String> redisTemplate;
 
     @Autowired
     private RedissonClient redissonClient;
@@ -32,16 +30,18 @@ public class TestController {
 
     @GetMapping("/test1")
 //    @Transactional
-    public String test1() throws InterruptedException {
+    public String test1(HttpServletResponse response) throws InterruptedException {
 //        PageHelper.startPage(1,2);
         log.info("调用");
-        var user2 = new User();
-        user2.setId(1);
-
 //        Thread.sleep(5000);
 
-        User user = User.builder().id(1).build();
-        List<User> users = userMapper.selectAll();
+//        User user = User.builder().id(1).build();
+//        List<User> users = userMapper.selectAll();
+
+        SysUser build = SysUser.builder().id(1).build();
+        SysUser sysUser = userMapper.selectOne(build);
+        log.info(sysUser.toString());
+
 
         RBucket<String> k3 = redissonClient.getBucket("k3");
 
